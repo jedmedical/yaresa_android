@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "net.apps.jed.yaresa"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        renderscriptSupportModeEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28+'
+    compile 'com.android.support:support-v4:28+'
+    compile 'com.android.support:cardview-v7:28+'
+    compile 'com.android.support:design:28+'
+//
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.github.rasoulmiri:buttonloading:v1.0.9'
+
+    implementation 'com.android.volley:volley:1.1.0'
+
+    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation "androidx.support.test:runner:1.1.0"
+//    androidTestImplementation 'androidx.support.test.espresso:espresso-core:3.1.0'
+
+    implementation "com.mikepenz:materialdrawer:6.1.0"
+
+//required support lib modules
+//    implementation "androidx.appcompat:appcompat:+"
+//    implementation "androidx.recyclerview:recyclerview:${versions.androidX}"
+//    implementation "androidx.annotation:annotation:${versions.androidX}"
+    implementation "com.google.android.material:material:+"
+//    implementation "androidx.constraintlayout:constraintlayout:+"
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.bumptech.glide:glide:3.8.0'
+
+    // the sample uses more advanced functions of the fastadapter
+    // https://github.com/mikepenz/FastAdapter/
+    implementation 'com.mikepenz:fastadapter-commons:3.3.0'
+    // used to generate the Open Source section
+    // https://github.com/mikepenz/AboutLibraries
+    implementation 'com.mikepenz:aboutlibraries:6.2.0'
+
+    //used to provide different itemAnimators for the RecyclerView
+    //https://github.com/mikepenz/ItemAnimators
+    implementation 'com.mikepenz:itemanimators:1.1.0'
+    // used to provide the MiniDrawer to normal Drawer crossfade effect via a SlidingPane layout
+    // --> https://github.com/mikepenz/MaterialDrawer/blob/develop/app/src/main/java/com/mikepenz/materialdrawer/app/MiniDrawerActivity.java
+    // https://github.com/mikepenz/Crossfader
+    implementation 'com.mikepenz:crossfader:1.6.0'
+    // used to provide the two step crossfade DrawerLayout. Which allows to have a mini layout which transforms to a normal layout within the drawer
+    // --> https://github.com/mikepenz/MaterialDrawer/blob/develop/app/src/main/java/com/mikepenz/materialdrawer/app/CrossfadeDrawerLayoutActvitiy.java
+    // https://github.com/mikepenz/CrossfadeDrawerLayout
+    implementation('com.mikepenz:crossfadedrawerlayout:1.1.0')
+
+    // icon fonts used inside the sample
+    // https://github.com/mikepenz/Android-Iconics
+    implementation 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:5.0.6.0@aar'
+    implementation 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
+}
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '28.0.0'
+            }
+        }
+    }
+}
+//configurations.all {
+//    resolutionStrategy.force "com.android.support:appcompat-v7:+"
+//    resolutionStrategy.force "com.android.support:cardview-v7:+"
+//    resolutionStrategy.force "com.android.support:recyclerview-v7:+"
+//    resolutionStrategy.force "com.android.support:design:+"
+//    resolutionStrategy.force "com.android.support:percent:+"
+//    resolutionStrategy.force "com.android.support:preference-v14:+"
+//    resolutionStrategy.force "com.android.support:customtabs:+"
+//    resolutionStrategy.force "com.android.support:support-annotations:+"
+//    resolutionStrategy.force "com.android.support:support:28.0.0"
+//}
